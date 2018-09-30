@@ -1,0 +1,256 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <f:loadBundle basename="stat.pr03101444.Pojo.messages" var="msgs"/>
+    <h:head>
+        <title>#{msgs.title}</title>
+        <script type="text/javascript"
+                src="resource/script/input.js?ln=js"/>
+        <style>
+        </style>
+    </h:head>
+    <h:body>    
+        <h:form id="form" prependId="false">
+            <p:panel id="panel" style="border-bottom: none">                
+                <h:panelGroup rendered="#{Main_Bean.status == 1}">
+                    <h:commandLink id="cix" action="rayonlar.xhtml" style="float: right">
+                        <!--<a href= "http://www.azstat.org/loginControl/?param=pr03101444" style="float: right">-->
+                        <h:graphicImage  url="/resource/images/logout_red.png" width="30" height="30"/> </h:commandLink>
+                    <p:tooltip id="tool" position="right" for="cix" value="Siyahıya qayıdış" showEffect="clip" hideEffect="explode"/>
+                </h:panelGroup>
+                <h:panelGroup rendered="#{Main_Bean.status == 0}">
+                    <p:link id="cix2" href="http://localhost:8080/loginControl/?param=pr03101444/" style="float: right">
+                        <!--                        <p:link href="http://www.azstat.org/loginControl/?param=pr03101444/"  style="float: right">-->
+                        <h:graphicImage  url="/resource/images/logout_red.png" width="30" height="30"/>  
+                    </p:link>
+                    <p:tooltip id="tool2" position="right" for="cix2" value="Sistemdən çıxış" showEffect="clip" hideEffect="explode"/>
+                </h:panelGroup>
+                <h:panelGroup rendered="#{Main_Bean.status == 2}">
+                    <h:commandLink id="cix3" action="Yekun.xhtml" style="float: right">
+                        <!--                        <p:link href="http://www.azstat.org/loginControl/?param=pr03101444/"  style="float: right">-->
+                        <h:graphicImage  url="/resource/images/logout_red.png" width="30" height="30"/>  
+                    </h:commandLink>
+                    <p:tooltip id="tool3" position="right" for="cix3" value="Sistemdən çıxış" showEffect="clip" hideEffect="explode"/>
+                </h:panelGroup>
+                <br/>              
+                <p:dataTable id="Bolme" value="#{Bean.Rows()}" var="kat"  emptyMessage="Məlumat Tapılmadı" style="font-size: 14px; text-align: center; width: 80%">
+                    <p:column headerText="#{msgs.t0c1}"  style="font-size: 0.9em; width: 40%;">
+                        <h:outputText value="#{kat.ad}"/>
+                    </p:column>
+                    <p:column headerText="#{msgs.t0c2}" style="font-size: 0.9em; text-align: center; padding: 2px">
+                        <h:outputText value="#{Bean.arazi}"/>
+                    </p:column>
+                    <p:column headerText="#{msgs.t0c3}" style="font-size: 0.9em; text-align: center; padding: 2px">
+                        <h:outputText value="#{Bean.fn}"/>
+                    </p:column>
+                    <p:column headerText="#{msgs.t0c4}" style="font-size: 0.9em; text-align: center; padding: 2px">
+                        <h:outputText value="#{Bean.mn}"/>
+                    </p:column>
+                    <p:column headerText="#{msgs.t0c5}" style="font-size: 0.9em; text-align: center; padding: 2px">
+                        <h:outputText value="#{Bean.tab}"/>
+                    </p:column>
+                    <p:column headerText="#{msgs.t0c6}" style="font-size: 0.9em; text-align: center; padding: 2px">
+                        <h:outputText value="#{Bean.htforma}"/>
+                    </p:column>
+                    <p:column headerText="#{msgs.t0c7}" style="font-size: 0.9em; text-align: center; padding: 2px">
+                        <h:outputText value="#{kat.bucce}"/>
+                    </p:column>
+                    <p:column headerText="#{msgs.t0c8}" style="font-size: 0.9em; text-align: center; padding: 2px">
+                        <h:outputText value="#{Bean.ik}"/>
+                    </p:column>
+                    <p:column headerText="#{msgs.t0c9}" style="font-size: 0.9em; text-align: center; padding: 2px">
+                        <h:outputText value="#{kat.say}"/>
+                    </p:column>
+                </p:dataTable>
+                <br/>
+                <br/>
+                <p:dataTable  id="Bolme1" widgetVar="dt" rowIndexVar="row" value="#{Row.listhes()}" emptyMessage="Məlumat Tapılmadı" var="af" expandedRow="#{true}" stickyHeader="true" style="font-size: 14px">
+                    <f:facet name="header"><font size="3"> Əsas vəsaitlərin hərəkəti və əsaslı təmiri (torpaq və faydalı qazıntılar istisna olunmaqla) </font></f:facet>
+                    <p:columnGroup type="header">
+                        <p:row>
+                            <p:column rowspan="2" headerText="Sətrin №-si" style="width: 3.5%;padding: 1px;text-align: center;font-weight: normal"/>
+                            <p:column rowspan="2" headerText="Göstəricinin adı" style="width: 22%;font-weight: normal;font-weight: normal"/>
+                            <p:column rowspan="2" headerText="Məhsulun kodu" style="width: 13%;padding: 1px;font-weight: normal;font-weight: normal"/>
+                            <p:column rowspan="2" headerText="Hesabat dövrü ərzində maddi əsas vəsaitlərin əldə edilməsinə çəkilmiş xərclər (torpaq və faydalı qazıntılar istisna olunmaqla)" style="font-weight: normal"/>
+                            <p:column colspan="2" headerText="o cümlədən:" style="width: 19%;font-weight: normal;font-weight: normal"/>
+                            <p:column rowspan="2" headerText="Əsas vəsaitlərin əsaslı təmiri üzrə kənar müəssisə və təşkilatların göstərdikləri xidmətlərin dəyəri" style="font-weight: normal"/>
+                            <p:column rowspan="2" headerText="o cümlədən, xarici ölkələrin hüquqi şəxslərinin göstərdikləri xidmətlər" style="width: 10%;padding: 1px;font-weight: normal"/>
+                            <p:column rowspan="2" headerText="Silinmiş əsas vəsaitlər bazar qiyməti ilə" style="width: 6%;padding: 1px;font-weight: normal"/>
+                            <p:column rowspan="2" headerText="Silinmiş əsas vəsaitlərin yaşı (tam rəqəmlə)" style="width: 6%;padding: 1px;font-weight: normal"/>
+                        </p:row>
+                        <p:row>
+                            <p:column headerText="ölkədə istehsal edilmiş yeni (istifadədə olmamış) əsas vəsaitlər" style="font-weight: normal"/>
+                            <p:column headerText="idxal olunmuş yeni və istifadə edilmiş əsas vəsaitlər" style="font-weight: normal"/>
+                        </p:row>
+                        <p:row>
+                            <p:column headerText="A" style="font-weight: normal"/>                
+                            <p:column headerText="B" style="font-weight: normal"/>
+                            <p:column headerText="C" style="font-weight: normal"/> 
+                            <p:column headerText="1" style="font-weight: normal"/>  
+                            <p:column headerText="2" style="font-weight: normal"/>                
+                            <p:column headerText="3" style="font-weight: normal"/>
+                            <p:column headerText="4" style="font-weight: normal"/>                
+                            <p:column headerText="5" style="font-weight: normal"/>
+                            <p:column headerText="6" style="font-weight: normal"/> 
+                            <p:column headerText="7" style="font-weight: normal"/>
+                        </p:row>
+                    </p:columnGroup>
+
+                    <p:column style="text-align: center;font-size: 14px">
+                        <h:outputText value="#{af.sira}"/> 
+<!--                        <h:inputHidden value="#{Row.mehs_koduh1}"/>
+                        <h:inputHidden value="#{Row.mehs_koduh2}"/>
+                        <h:inputHidden value="#{Row.mehs_koduh3}"/>
+                        <h:inputHidden value="#{Row.mehs_koduh4}"/>
+                        <h:inputHidden value="#{Row.mehs_koduh5}"/>
+                        <h:inputHidden value="#{Row.mehs_koduh6}"/>
+                        <h:inputHidden value="#{Row.mehs_koduh7}"/>
+                        <h:inputHidden value="#{Row.mehs_koduh8}"/>
+                        <h:inputHidden value="#{Row.mehs_koduh9}"/>
+                        <h:inputHidden value="#{Row.mehs_koduh10}"/>-->
+                    </p:column>
+                    <p:column style="font-size: 14px">
+                        <h:outputText value="#{af.adi}" rendered="#{row lt 36}"/>
+                        <p:inputText  id="ad1" value="#{Row.ad1}" readonly="true" size="35" rendered="#{row == 36}"/>
+                        <p:inputText  id="ad2" value="#{Row.ad2}" readonly="true" size="35" rendered="#{row == 37}"/>
+                        <p:inputText  id="ad3" value="#{Row.ad3}" readonly="true" size="35" rendered="#{row == 38}"/>
+                        <p:inputText  id="ad4" value="#{Row.ad4}" readonly="true" size="35" rendered="#{row == 39}"/>
+                        <p:inputText  id="ad5" value="#{Row.ad5}" readonly="true" size="35" rendered="#{row == 40}"/>
+                        <p:inputText  id="ad6" value="#{Row.ad6}" readonly="true" size="35" rendered="#{row == 41}"/>
+                        <p:inputText  id="ad7" value="#{Row.ad7}" readonly="true" size="35" rendered="#{row == 42}"/>
+                        <p:inputText  id="ad8" value="#{Row.ad8}" readonly="true" size="35" rendered="#{row == 43}"/>
+                        <p:inputText  id="ad9" value="#{Row.ad9}" readonly="true" size="35" rendered="#{row == 44}"/>
+                        <p:inputText  id="ad10" value="#{Row.ad10}" readonly="true" size="35" rendered="#{row == 45}"/>
+                    </p:column>
+
+                    <p:column style="text-align: center;font-size: 14px">
+                        <h:outputText value="#{af.mehs_kodu}" rendered="#{row ge 1 and row lt 35}" style="float: left"/>
+                        <h:outputText value="#{af.mehs_kodu == '00000' ? 'X' : af.mehs_kodu}" rendered="#{row == 0 || row == 35}" style="float: none"/>
+                        <p:inputText id="kod1" value="#{Row.kod1}" rendered="#{row == 36}" readonly="true" size="5" style="float: left"/>
+                        <p:inputText id="kod2" value="#{Row.kod2}" rendered="#{row == 37}" readonly="true" size="5" style="float: left"/>
+                        <p:inputText id="kod3" value="#{Row.kod3}" rendered="#{row == 38}" readonly="true" size="5" style="float: left"/>
+                        <p:inputText id="kod4" value="#{Row.kod4}" rendered="#{row == 39}" readonly="true" size="5" style="float: left"/>
+                        <p:inputText id="kod5" value="#{Row.kod5}" rendered="#{row == 40}" readonly="true" size="5" style="float: left"/>
+                        <p:inputText id="kod6" value="#{Row.kod6}" rendered="#{row == 41}" readonly="true" size="5" style="float: left"/>
+                        <p:inputText id="kod7" value="#{Row.kod7}" rendered="#{row == 42}" readonly="true" size="5" style="float: left"/>
+                        <p:inputText id="kod8" value="#{Row.kod8}" rendered="#{row == 43}" readonly="true" size="5" style="float: left"/>
+                        <p:inputText id="kod9" value="#{Row.kod9}" rendered="#{row == 44}" readonly="true" size="5" style="float: left"/>
+                        <p:inputText id="kod10" value="#{Row.kod10}" rendered="#{row == 45}" readonly="true" size="5" style="float: left"/>
+
+                        <p:selectOneMenu value="#{Row.selectmehsul}" autoWidth="50" rendered="#{row == 1}" filter="true" filterMatchMode="contains" style="height: 22px;width: 50px;float: right"><f:selectItems value="#{Row.mehsul}"/> </p:selectOneMenu>
+                        <p:selectOneMenu value="#{Row.selectmehsul}" autoWidth="50" rendered="#{row == 2}" style="height: 22px;width: 50px;float: right"><f:selectItems value="#{Row.mehsul1}"/> </p:selectOneMenu>
+                        <p:selectOneMenu value="#{Row.selectmehsul}" autoWidth="50" rendered="#{row == 3}" style="height: 22px;width: 50px;float: right"><f:selectItems value="#{Row.mehsul2}"/> </p:selectOneMenu>
+                        <p:selectOneMenu value="#{Row.selectmehsul}" autoWidth="50" rendered="#{row == 4}" style="height: 22px;width: 50px;float: right"><f:selectItems value="#{Row.mehsul3}"/> </p:selectOneMenu>
+                        <p:selectOneMenu value="#{Row.selectmehsul}" autoWidth="50" rendered="#{row == 5}"  style="height: 22px;width: 50px;float: right"><f:selectItems value="#{Row.mehsul4}"/> </p:selectOneMenu>
+                        <p:selectOneMenu value="#{Row.selectmehsul}" autoWidth="50" rendered="#{row == 6}" filter="true" filterMatchMode="contains" style="height: 22px;width: 50px;float: right"><f:selectItems value="#{Row.mehsul5}"/> </p:selectOneMenu>
+                        <p:selectOneMenu value="#{Row.selectmehsul}" autoWidth="50" rendered="#{row == 7}" filter="true" filterMatchMode="contains" style="height: 22px;width: 50px;float: right"><f:selectItems value="#{Row.mehsul6}"/> </p:selectOneMenu>
+                        <p:selectOneMenu value="#{Row.selectmehsul}" autoWidth="50" rendered="#{row == 8}" filter="true" filterMatchMode="contains" style="height: 22px;width: 50px;float: right"><f:selectItems value="#{Row.mehsul7}"/> </p:selectOneMenu>
+                        <p:selectOneMenu value="#{Row.selectmehsul}" autoWidth="50" rendered="#{row == 9}" filter="true" filterMatchMode="contains" style="height: 22px;width: 50px;float: right"><f:selectItems value="#{Row.mehsul8}"/> </p:selectOneMenu>
+                        <p:selectOneMenu value="#{Row.selectmehsul}" autoWidth="50" rendered="#{row == 10}" filter="true" filterMatchMode="contains" style="height: 22px;width: 50px;float: right"><f:selectItems value="#{Row.mehsul9}"/> </p:selectOneMenu>
+                        <p:selectOneMenu value="#{Row.selectmehsul}" autoWidth="50" rendered="#{row == 11}" style="height: 22px;width: 50px;float: right"><f:selectItems value="#{Row.mehsul10}"/> </p:selectOneMenu>
+                        <p:selectOneMenu value="#{Row.selectmehsul}" autoWidth="50" rendered="#{row == 12}" filter="true" filterMatchMode="contains" style="height: 22px;width: 50px;float: right"><f:selectItems value="#{Row.mehsul11}"/> </p:selectOneMenu>
+                        <p:selectOneMenu value="#{Row.selectmehsul}" autoWidth="50" rendered="#{row == 13}" style="height: 22px;width: 50px;float: right"><f:selectItems value="#{Row.mehsul12}"/> </p:selectOneMenu>
+                        <p:selectOneMenu value="#{Row.selectmehsul}" autoWidth="50" rendered="#{row == 14}" filter="true" filterMatchMode="contains" style="height: 22px;width: 50px;float: right"><f:selectItems value="#{Row.mehsul13}"/> </p:selectOneMenu>
+                        <p:selectOneMenu value="#{Row.selectmehsul}" autoWidth="50" rendered="#{row == 15}" style="height: 22px;width: 50px;float: right"><f:selectItems value="#{Row.mehsul14}"/> </p:selectOneMenu>
+                        <p:selectOneMenu value="#{Row.selectmehsul}" autoWidth="50" rendered="#{row == 16}" filter="true" filterMatchMode="contains" style="height: 22px;width: 50px;float: right"><f:selectItems value="#{Row.mehsul15}"/> </p:selectOneMenu>
+                        <p:selectOneMenu value="#{Row.selectmehsul}" autoWidth="50" rendered="#{row == 17}" filter="true" filterMatchMode="contains" style="height: 22px;width: 50px;float: right"><f:selectItems value="#{Row.mehsul16}"/> </p:selectOneMenu>
+                        <p:selectOneMenu value="#{Row.selectmehsul}" autoWidth="50" rendered="#{row == 18}" filter="true" filterMatchMode="contains" style="height: 22px;width: 50px;float: right"><f:selectItems value="#{Row.mehsul17}"/> </p:selectOneMenu>
+                        <p:selectOneMenu value="#{Row.selectmehsul}" autoWidth="50" rendered="#{row == 19}" filter="true" filterMatchMode="contains" style="height: 22px;width: 50px;float: right"><f:selectItems value="#{Row.mehsul18}"/> </p:selectOneMenu>
+                        <p:selectOneMenu value="#{Row.selectmehsul}" autoWidth="50" rendered="#{row == 20}" filter="true" filterMatchMode="contains" style="height: 22px;width: 50px;float: right"><f:selectItems value="#{Row.mehsul19}"/> </p:selectOneMenu>
+                        <p:selectOneMenu value="#{Row.selectmehsul}" autoWidth="50" rendered="#{row == 21}" filter="true" filterMatchMode="contains" style="height: 22px;width: 50px;float: right"><f:selectItems value="#{Row.mehsul20}"/> </p:selectOneMenu>
+                        <p:selectOneMenu value="#{Row.selectmehsul}" autoWidth="50" rendered="#{row == 22}" filter="true" filterMatchMode="contains" style="height: 22px;width: 50px;float: right"><f:selectItems value="#{Row.mehsul21}"/> </p:selectOneMenu>
+                        <p:selectOneMenu value="#{Row.selectmehsul}" autoWidth="50" rendered="#{row == 23}" filter="true" filterMatchMode="contains" style="height: 22px;width: 50px;float: right"><f:selectItems value="#{Row.mehsul22}"/> </p:selectOneMenu>
+                        <p:selectOneMenu value="#{Row.selectmehsul}" autoWidth="50" rendered="#{row == 24}" filter="true" filterMatchMode="contains" style="height: 22px;width: 50px;float: right"><f:selectItems value="#{Row.mehsul23}"/> </p:selectOneMenu>
+                        <p:selectOneMenu value="#{Row.selectmehsul}" autoWidth="50" rendered="#{row == 25}" filter="true" filterMatchMode="contains" style="height: 22px;width: 50px;float: right"><f:selectItems value="#{Row.mehsul24}"/> </p:selectOneMenu>
+                        <p:selectOneMenu value="#{Row.selectmehsul}" autoWidth="50" rendered="#{row == 26}" style="height: 22px;width: 50px;float: right"><f:selectItems value="#{Row.mehsul25}"/> </p:selectOneMenu>
+                        <p:selectOneMenu value="#{Row.selectmehsul}" autoWidth="50" rendered="#{row == 27}" filter="true" filterMatchMode="contains" style="height: 22px;width: 50px;float: right"><f:selectItems value="#{Row.mehsul26}"/> </p:selectOneMenu>
+                        <p:selectOneMenu value="#{Row.selectmehsul}" autoWidth="50" rendered="#{row == 28}" style="height: 22px;width: 50px;float: right"><f:selectItems value="#{Row.mehsul27}"/> </p:selectOneMenu>
+                        <p:selectOneMenu value="#{Row.selectmehsul}" autoWidth="50" rendered="#{row == 29}" filter="true" filterMatchMode="contains" style="height: 22px;width: 50px;float: right"><f:selectItems value="#{Row.mehsul28}"/> </p:selectOneMenu>
+                        <p:selectOneMenu value="#{Row.selectmehsul}" autoWidth="50" rendered="#{row == 30}" style="height: 22px;width: 50px;float: right"><f:selectItems value="#{Row.mehsul29}"/> </p:selectOneMenu>
+                        <p:selectOneMenu value="#{Row.selectmehsul}" autoWidth="50" rendered="#{row == 31}" filter="true" filterMatchMode="contains" style="height: 22px;width: 50px;float: right"><f:selectItems value="#{Row.mehsul30}"/> </p:selectOneMenu>
+                        <p:selectOneMenu value="#{Row.selectmehsul}" autoWidth="50" rendered="#{row == 32}" filter="true" filterMatchMode="contains" style="height: 22px;width: 50px;float: right"><f:selectItems value="#{Row.mehsul31}"/> </p:selectOneMenu>
+                        <p:selectOneMenu value="#{Row.selectmehsul}" autoWidth="50" rendered="#{row == 33}" filter="true" filterMatchMode="contains" style="height: 22px;width: 50px;float: right"><f:selectItems value="#{Row.mehsul32}"/> </p:selectOneMenu>
+                        <p:selectOneMenu value="#{Row.selectmehsul}" autoWidth="50" rendered="#{row == 34}" style="height: 22px;width: 50px;float: right"><f:selectItems value="#{Row.mehsul33}"/></p:selectOneMenu>
+                        <p:selectOneMenu id="change1" onfocus="change1();text1();" value="#{Row.mehs_koduh1}" autoWidth="50" var="item" rendered="#{row == 36}" filter="true" filterMatchMode="contains" style="height: 22px;width: 50px;float: right"><f:selectItem itemLabel="Məhsul növünü seçin" itemValue=""/><f:selectItems var="i" value="#{Row.mehsul34}" itemLabel="#{i.kod_b} - #{i.ad}" itemValue="#{i.kod_c}"/></p:selectOneMenu>
+                        <p:selectOneMenu id="change2" onfocus="change2();text2();" value="#{Row.mehs_koduh2}" autoWidth="50" var="item" rendered="#{row == 37}" filter="true" filterMatchMode="contains" style="height: 22px;width: 50px;float: right"><f:selectItem itemLabel="Məhsul növünü seçin" itemValue=""/><f:selectItems var="i" value="#{Row.mehsul34}" itemLabel="#{i.kod_b} - #{i.ad}" itemValue="#{i.kod_c}"/></p:selectOneMenu>
+                        <p:selectOneMenu id="change3" onfocus="change3();text3();" value="#{Row.mehs_koduh3}" autoWidth="50" var="item" rendered="#{row == 38}" filter="true" filterMatchMode="contains" style="height: 22px;width: 50px;float: right"><f:selectItem itemLabel="Məhsul növünü seçin" itemValue=""/><f:selectItems var="i" value="#{Row.mehsul34}" itemLabel="#{i.kod_b} - #{i.ad}" itemValue="#{i.kod_c}"/></p:selectOneMenu>
+                        <p:selectOneMenu id="change4" onfocus="change4();text4();" value="#{Row.mehs_koduh4}" autoWidth="50" var="item" rendered="#{row == 39}" filter="true" filterMatchMode="contains" style="height: 22px;width: 50px;float: right"><f:selectItem itemLabel="Məhsul növünü seçin" itemValue=""/><f:selectItems var="i" value="#{Row.mehsul34}" itemLabel="#{i.kod_b} - #{i.ad}" itemValue="#{i.kod_c}"/></p:selectOneMenu>
+                        <p:selectOneMenu id="change5" onfocus="change5();text5();" value="#{Row.mehs_koduh5}" autoWidth="50" var="item" rendered="#{row == 40}" filter="true" filterMatchMode="contains" style="height: 22px;width: 50px;float: right"><f:selectItem itemLabel="Məhsul növünü seçin" itemValue=""/><f:selectItems var="i" value="#{Row.mehsul34}" itemLabel="#{i.kod_b} - #{i.ad}" itemValue="#{i.kod_c}"/></p:selectOneMenu>
+                        <p:selectOneMenu id="change6" onfocus="change6();text6();" value="#{Row.mehs_koduh6}" autoWidth="50" var="item" rendered="#{row == 41}" filter="true" filterMatchMode="contains" style="height: 22px;width: 50px;float: right"><f:selectItem itemLabel="Məhsul növünü seçin" itemValue=""/><f:selectItems var="i" value="#{Row.mehsul34}" itemLabel="#{i.kod_b} - #{i.ad}" itemValue="#{i.kod_c}"/></p:selectOneMenu>
+                        <p:selectOneMenu id="change7" onfocus="change7();text7();" value="#{Row.mehs_koduh7}" autoWidth="50" var="item" rendered="#{row == 42}" filter="true" filterMatchMode="contains" style="height: 22px;width: 50px;float: right"><f:selectItem itemLabel="Məhsul növünü seçin" itemValue=""/><f:selectItems var="i" value="#{Row.mehsul34}" itemLabel="#{i.kod_b} - #{i.ad}" itemValue="#{i.kod_c}"/></p:selectOneMenu>
+                        <p:selectOneMenu id="change8" onfocus="change8();text8();" value="#{Row.mehs_koduh8}" autoWidth="50" var="item" rendered="#{row == 43}" filter="true" filterMatchMode="contains" style="height: 22px;width: 50px;float: right"><f:selectItem itemLabel="Məhsul növünü seçin" itemValue=""/><f:selectItems var="i" value="#{Row.mehsul34}" itemLabel="#{i.kod_b} - #{i.ad}" itemValue="#{i.kod_c}"/></p:selectOneMenu>
+                        <p:selectOneMenu id="change9" onfocus="change9();text9();" value="#{Row.mehs_koduh9}" autoWidth="50" var="item" rendered="#{row == 44}" filter="true" filterMatchMode="contains" style="height: 22px;width: 50px;float: right"><f:selectItem itemLabel="Məhsul növünü seçin" itemValue=""/><f:selectItems var="i" value="#{Row.mehsul34}" itemLabel="#{i.kod_b} - #{i.ad}" itemValue="#{i.kod_c}"/></p:selectOneMenu>
+                        <p:selectOneMenu id="change10" onfocus="change10();text10();" value="#{Row.mehs_koduh10}" autoWidth="50" var="item" rendered="#{row == 45}" filter="true" filterMatchMode="contains" style="height: 22px;width: 50px;float: right"><f:selectItem itemLabel="Məhsul növünü seçin" itemValue=""/><f:selectItems var="i" value="#{Row.mehsul34}" itemLabel="#{i.kod_b} - #{i.ad}" itemValue="#{i.kod_c}"/></p:selectOneMenu>
+                    </p:column>
+
+
+                    <p:column style="font-size: 12px; text-align: center; padding: 2px;">
+                        <p:inputNumber value="#{af.sut1}" maxValue="999999999.99" size="17" decimalSeparator="."  onfocus="clear0(this);" onblur="clear0d0(this);" decimalPlaces="" thousandSeparator=" " inputStyle="text-align: right"/>
+                    </p:column>
+                    <p:column style="font-size: 12px; text-align: center; padding: 2px;">
+                        <p:inputNumber value="#{af.sut2}" maxValue="999999999.99" size="15" decimalSeparator="." onfocus="clear0(this);" onblur="clear0d0(this);" decimalPlaces=" " thousandSeparator=" " inputStyle="text-align: right"/>
+                    </p:column>
+                    <p:column style="font-size: 12px; text-align: center; padding: 2px;">
+                        <p:inputNumber value="#{af.sut3}" maxValue="999999999.99" size="15" decimalSeparator="." onfocus="clear0(this);" onblur="clear0d0(this);" decimalPlaces=" " thousandSeparator=" " inputStyle="text-align: right"/>
+                    </p:column>
+                    <p:column style="font-size: 12px; text-align: center; padding: 2px;">
+                        <p:inputNumber value="#{af.sut4}" maxValue="999999999.99" size="17" decimalSeparator="." onfocus="clear0(this);" onblur="clear0d0(this);" decimalPlaces=" " thousandSeparator=" " inputStyle="text-align: right"/>
+                    </p:column>
+                    <p:column style="font-size: 12px; text-align: center; padding: 2px;">
+                        <p:inputNumber value="#{af.sut5}" maxValue="999999999.99" size="16" decimalSeparator="." onfocus="clear0(this);" onblur="clear0d0(this);" decimalPlaces=" " thousandSeparator=" " inputStyle="text-align: right"/>
+                    </p:column>
+                    <p:column style="font-size: 12px; text-align: center; padding: 2px;">
+                        <p:inputNumber value="#{af.sut6}" maxValue="999999999.99" size="7" decimalSeparator="." onfocus="clear0(this);" onblur="clear0d0(this);" decimalPlaces=" " thousandSeparator=" " inputStyle="text-align: right"/>
+                    </p:column>
+                    <p:column style="font-size: 12px; text-align: center; padding: 2px;">
+                        <p:inputNumber value="#{af.sut7}" maxValue="999" size="7" decimalSeparator=" " onfocus="clear0(this);" onkeyup="clear0d0(this);" decimalPlaces="0" thousandSeparator=" " inputStyle="text-align: right"/>
+                    </p:column>
+                    <p:rowExpansion rendered="#{row==0}">
+                        <h:outputText value="o cümlədən əsas vəsaitlərin növləri üzrə:" style="font-size: 14px"/>
+                    </p:rowExpansion>              
+                </p:dataTable>
+            </p:panel>
+            </h:form>
+        <h:form id="form2">
+            <p:panel id="div" style="height: 140px;border-top: none;">
+                <br/>
+                <p:messages for="label"  autoUpdate="true"  redisplay="true" style="width: 300px">
+                        <p:effect type="explode" event="load"/>
+                </p:messages>
+                <p:outputLabel id="label" value=""/>
+                <p:inputTextarea id="area"  value="#{Bean.message}" rendered="#{not empty Bean.message}" readonly="true" autoResize="false"  style="width: 60%;height: 100px; float: right;position: fixed;right: 25px;bottom: 20px;"/>  
+                <h:panelGrid id="grid" columns="3" cellpadding="1" width="25%">
+                    <p:column>    
+                        <p:outputLabel value="Adamsaat: "/>
+                        <p:inputNumber id="ast"  autocomplete="false" value="#{Bean.adamsaat}" 
+                                       onchange="clear0d0(this);" onfocus="clear0d0(this);" onblur="clear0d0(this);" 
+                                       required="#{not empty param.Save}" validatorMessage="Adamsaat 0 ola bilməz!..." requiredMessage="Adamsaat boş ola bilməz!..." 
+                                       maxValue="1.9" size="3" thousandSeparator=" " inputStyle="text-align: right">   
+                            <f:validateDoubleRange minimum="0.1" maximum="1.9"/>
+                        </p:inputNumber>
+                        <p:tooltip id="toolTip" for="ast"  value="0.01 və 1.9 arası ədəd daxil edin"
+                           showEffect="slide" hideEffect="explode" position="right" />
+                        <p:spacer width="10"/>
+                    </p:column> 
+                    <p:messages autoUpdate="true"  redisplay="true" style="width: 300px">
+                        <p:effect type="explode" event="load" delay="2500"/>
+                    </p:messages>
+                    <p:column> 
+                        <h:outputText value="İP ünvanı &nbsp; #{Row.ip}" style="font-size: 14px; float: right; color: #0000FF; font-style:oblique;"/>
+                    </p:column> 
+                </h:panelGrid>
+                <br/>
+                <p:commandButton value="Yadda Saxla" action="#{Bean.SaveHes()}" update="div" icon="fa fa-save">
+                    <f:param name="Save" value="true"/>
+                </p:commandButton>  
+                <p:spacer width="30"/>
+                <p:commandButton value="Çap et (PDF)" action="#{Bean.chap_pdf()}" onclick="this.form.target='_blank'" ajax="false" icon="fa fa-print"/>
+                <br/>
+            </p:panel>
+        </h:form>
+    </h:body>
+</html>
+

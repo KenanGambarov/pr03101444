@@ -1,0 +1,134 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./Yekun.xhtml">
+
+            <ui:define name="content">
+                <h:form>
+                    <p:panel id="bax" style="width: 75.5%;height: 80px;float: right;background-color: lightgray;border-radius: 13px 13px 0px 0px;"> 
+                        <br/>
+                        <h:panelGrid  columns="16" style="width: 100%;text-align: center">
+                            <p:column>
+                                <h:outputText value="Müəssisənin kodu:"/>
+                            </p:column>
+                            <p:column>
+                                <p:inputNumber maxValue="9999999" size="5" value="#{Yekun_Bean.kod}" decimalSeparator=" " decimalPlaces="0" thousandSeparator=" "/>
+                            </p:column>
+                            &nbsp;&nbsp;
+                            <p:column>
+                                <h:outputText value="Sətrin kodu:" />
+                            </p:column>
+                            <p:column>
+                                <p:inputText value="#{Yekun_Bean.sira}" style="width: 35%"><p:keyFilter regEx="/[\d\-\.\,]/"/></p:inputText>
+                            </p:column>
+                            <p:column>
+                                <h:outputText value="Fəaliyyət kodu:" />
+                            </p:column>
+                            <p:column>
+                                <p:inputText value="#{Yekun_Bean.feal}" style="width: 45%"><p:keyFilter regEx="/[\d\-\.\,]/"/></p:inputText>
+                            </p:column>
+                            <p:column>
+                                <h:outputText value="Mülkiyyət kodu:" />
+                            </p:column>
+                            <p:column>
+                                <p:inputText value="#{Yekun_Bean.mn2}" style="width: 55%"><p:keyFilter regEx="/[\d\-\.\,]/"/></p:inputText>
+                            </p:column>
+                            <p:column>
+                                <h:outputText value="Seksiya:" />&nbsp;<p:inputText value="#{Yekun_Bean.sek}" style="width: 15%"/>
+                            </p:column>
+                            <p:column>
+                                <h:outputText value="Tabelik:" />&nbsp;<p:inputText value="#{Yekun_Bean.tab}" style="width: 30%"><p:keyFilter regEx="/[\d\-\.\,]/"/></p:inputText>
+                            </p:column>
+                            <p:column style="text-align: center">
+                                <h:outputText value="Ərazinin kodu:"/>
+                            </p:column>
+                            <p:column>
+                                <p:selectOneMenu value="#{Yekun_Bean.iqt}" autoWidth="50"><f:selectItems value="#{Yekun_Bean.iqtisadireg}" var="i" itemLabel="#{i.araziadi}" itemValue="#{i.zona1}"/></p:selectOneMenu>
+                            </p:column>
+                            <p:column>
+                                &nbsp;&nbsp;&nbsp;
+                            </p:column>
+                            <p:column>
+                                <p:commandButton value="Ok" update="baxis" icon="ui-icon-check"/>
+                            </p:column>
+                        </h:panelGrid>
+                    </p:panel>
+                    <p:dataTable  id="baxis" rowStyleClass="#{bax.nomre == 0 ? 'row-style' : null}" scrollable="true" scrollWidth="77%" scrollHeight="333"  widgetVar="table" rowIndexVar="row" value="#{Yekun_Bean.baxis()}" emptyMessage="Məlumat Tapılmadı" var="bax" expandedRow="#{true}" style="float: right;height: 339px;font-size: 14px;">
+                        <f:facet name="header"><font size="3"> Əsas vəsaitlərin hərəkəti və əsaslı təmiri (torpaq və faydalı qazıntılar istisna olunmaqla) </font></f:facet>
+                        <p:columnGroup type="header">
+                            <p:row>
+                                <p:column rowspan="2" headerText="Ərazi kodu" style="width: 2.7%;padding-left: 1px;text-align: center;font-weight: normal"/>
+                                <p:column rowspan="2" headerText="Müəssisə kodu" style="width: 4.5%;padding: 1px;text-align: center;font-weight: normal"/>
+                                <p:column rowspan="2" headerText="Sətrin №-si" style="width: 3%;padding: 1px;text-align: center;font-weight: normal"/>
+                                <p:column rowspan="2" headerText="Göstəricinin adı" style="width: 22%;font-weight: normal"/>
+                                <p:column rowspan="2" headerText="Məhsulun kodu" style="width: 4.7%;padding-left: 1px;font-weight: normal"/>
+                                <p:column rowspan="2" headerText="Hesabat dövrü ərzində maddi əsas vəsaitlərin əldə edilməsinə çəkilmiş xərclər (torpaq və faydalı qazıntılar istisna olunmaqla)" style="width: 9%;font-weight: normal"/>
+                                <p:column colspan="2" headerText="o cümlədən:" style="width: 15%;font-weight: normal"/>
+                                <p:column rowspan="2" headerText="Əsas vəsaitlərin əsaslı təmiri üzrə kənar müəssisə və təşkilatların göstərdikləri xidmətlərin dəyəri" style="width: 8%;font-weight: normal"/>
+                                <p:column rowspan="2" headerText="o cümlədən, xarici ölkələrin hüquqi şəxslərinin göstərdikləri xidmətlər" style="width: 6.5%;font-weight: normal"/>
+                                <p:column rowspan="2" headerText="Silinmiş əsas vəsaitlər bazar qiyməti ilə"  style="width: 6.5%;font-weight: normal"/>
+                                <p:column rowspan="2" headerText="Silinmiş əsas vəsaitlərin yaşı (tam rəqəmlə)" style="width: 6.5%;font-weight: normal"/>
+                            </p:row>
+                            <p:row>
+                                <p:column headerText="ölkədə istehsal edilmiş yeni (istifadədə olmamış) əsas vəsaitlər" style="font-weight: normal"/>
+                                <p:column headerText="idxal olunmuş yeni və istifadə edilmiş əsas vəsaitlər" style="font-weight: normal"/>
+                            </p:row>
+                        </p:columnGroup>
+                        <p:column style="text-align: left;font-size: 14px">
+                            <h:outputText value="#{bax.adi_h}" rendered="#{bax.nomre == 0}" style="font-weight: bold"/> 
+                        </p:column>
+                        <p:column colspan="#{bax.nomre == 0 ? '2' : null}" style="text-align: center;font-size: 14px;text-align: left">
+                            <h:outputText value="#{bax.kod_c}" rendered="#{bax.nomre == 0}" style="font-weight: bold"/> 
+                        </p:column>
+                        <p:column rendered="#{bax.nomre != 0}" style="text-align: center;font-size: 14px">
+                            <h:outputText value="#{bax.sira}"/> 
+                        </p:column>
+                        <p:column colspan="#{bax.nomre == 0 ? '9' : null}" style="font-size: 14px">
+                            <h:outputText value="Müəssisənin adı: #{bax.adi}" rendered="#{bax.nomre == 0}" style="font-weight: bold"/>
+                            <h:outputText value="#{bax.adi}" rendered="#{bax.nomre == 1}"/>
+                            <!--<h:outputText value="#{bax.ad}" rendered="#{bax.sira ge '37'}"/>-->
+                            <p:rowToggler rendered="false"/>
+                        </p:column>
+                        <p:column rendered="#{bax.nomre != 0}" style="text-align: center;font-size: 14px">
+                            <!--<h:outputText value="#{bax.mehs_kodu}" rendered="#{bax.sira lt '37'}" />-->
+                            <h:outputText value="#{bax.kod}"/>
+                        </p:column>
+                        <p:column rendered="#{bax.nomre != 0}" style="font-size: 12px; text-align: right; padding: 2px;">
+                            <h:outputText value="#{bax.sut1}" />
+                        </p:column>
+                        <p:column rendered="#{bax.nomre != 0}" style="font-size: 12px; text-align: right; padding: 2px;">
+                            <h:outputText value="#{bax.sut2}" />
+                        </p:column>
+                        <p:column rendered="#{bax.nomre != 0}" style="font-size: 12px; text-align: right; padding: 2px;">
+                            <h:outputText value="#{bax.sut3}" />
+                        </p:column>
+                        <p:column rendered="#{bax.nomre != 0}" style="font-size: 12px; text-align: right; padding: 2px;">
+                            <h:outputText value="#{bax.sut4}" />
+                        </p:column>
+                        <p:column rendered="#{bax.nomre != 0}" style="font-size: 12px; text-align: right; padding: 2px;">
+                            <h:outputText value="#{bax.sut5}" />
+                        </p:column>
+                        <p:column rendered="#{bax.nomre != 0}" style="font-size: 12px; text-align: right; padding: 2px;">
+                            <h:outputText value="#{bax.sut6}" />
+                        </p:column>
+                        <p:column rendered="#{bax.nomre != 0}" style="font-size: 12px; text-align: right; padding: 2px;">
+                            <h:outputText value="#{bax.sut7}" />
+                        </p:column>
+                        <p:rowExpansion rendered="#{bax.sira == '01'}">
+                            <h:outputText value="o cümlədən əsas vəsaitlərin növləri üzrə:" style="font-size: 14px"/>
+                        </p:rowExpansion>
+                    </p:dataTable>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

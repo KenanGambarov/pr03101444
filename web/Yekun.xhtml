@@ -1,0 +1,139 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <f:loadBundle basename="stat.pr03101444.Pojo.messages" var="msgs"/>
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="./css/MyStyle.css"/>
+        <title>#{msgs.title}</title>
+        <script type="text/javascript"
+                src="resource/script/input.js?ln=js" charset="utf-8"/>
+    </h:head>
+
+    <h:body>
+        <h:form id="form">
+            <p:panel id="left" style="width: 22%;height: 620px;float: left; border-radius: 14px;box-shadow: 10px 10px 10px 10px">
+                <h:panelGroup rendered="#{Main_Bean.status == 1 }">
+                    <h:commandLink id="cix" target="_self" action="rayonlar.xhtml" style="float: right">
+                        <!--<a href= "http://www.azstat.org/loginControl/?param=pr03101444/" style="float: right">-->
+                        <h:graphicImage  url="/resource/images/logout_red.png" width="25" height="25"/> 
+                    </h:commandLink>
+                    <p:tooltip id="tool" position="right" for="cix" value="Siyahıya qayıdış" showEffect="clip" hideEffect="explode"/>
+                </h:panelGroup>
+                <h:panelGroup rendered="#{Main_Bean.status==2 || Main_Bean.status==3}">
+                    <p:link id="cix2" target="_self" href="http://localhost:8080/loginControl/?param=pr03101444/" style="float: right">
+                        <!--                        <p:link href="http://www.azstat.org/loginControl/?param=pr03101444/"  style="float: right">-->
+                        <h:graphicImage  url="/resource/images/logout_red.png" width="25" height="25"/>  
+                    </p:link>
+                    <p:tooltip id="tool2" position="right" for="cix2" value="Sistemdən çıxış" showEffect="clip" hideEffect="explode" />
+                </h:panelGroup>
+
+                <br/>
+                <p align="center" style=" font-size: 16px; color: #003333; font-weight: bold; font-family: Cambria;"> 1-ƏF №-li forma - #{msgs.title} </p>
+
+                <p:selectOneMenu value="#{Yekun_Bean.value}" immediate="true" var="ced" autoWidth="80" style="font-size: 14px;width: 85%;float: left;box-shadow: 5px 5px 5px #888888;">
+                    <f:selectItem itemLabel="Çıxış cədvəlini seçin" itemValue="0" noSelectionOption="true"/>
+                    <f:selectItem itemLabel="Daxil edilmiş hesabatlar haqqında arayış" itemValue="1" noSelectionOption="true"/>
+                    <f:selectItem itemLabel="Müəssisələr haqqında arayış" itemValue="2" noSelectionOption="true"/>
+                    <f:selectItem itemLabel="Sahibkarlar haqqında arayış" itemValue="3" noSelectionOption="true"/>
+                    <f:selectItem itemLabel="Hesabatlara baxış" itemValue="4" noSelectionOption="true"/>
+                    <f:selectItem itemLabel="Cədvəl1" itemValue="sut1" noSelectionOption="true"/>
+                    <f:selectItem itemLabel="Cədvəl2" itemValue="sut2" noSelectionOption="true"/>
+                    <f:selectItem itemLabel="Cədvəl3" itemValue="sut3" noSelectionOption="true"/> 
+                    <f:selectItem itemLabel="Cədvəl4" itemValue="sut4" noSelectionOption="true"/>
+                    <f:selectItem itemLabel="Cədvəl5" itemValue="sut5" noSelectionOption="true"/>  
+                    <f:selectItem itemLabel="Cədvəl6" itemValue="sut6" noSelectionOption="true"/>
+                    <f:selectItem itemLabel="Cədvəl7" itemValue="sut7" noSelectionOption="true"/>  
+                </p:selectOneMenu>
+                <br/><br/>
+                <p:selectOneMenu value="#{Yekun_Bean.fk}" autoWidth="80" style="font-size: 14px;width: 85%;float: left;box-shadow: 5px 5px 5px #888888;">
+                    <f:selectItem itemLabel="Fəaliyyət növü səviyyəsini seçin" itemValue="#{null}" noSelectionOption="true" />
+                    <f:selectItem itemLabel="2-ci səviyyə" itemValue="2" noSelectionOption="true" />
+                    <f:selectItem itemLabel="3-cü səviyyyə" itemValue="3" noSelectionOption="true" />
+                    <f:selectItem itemLabel="4-cü səviyyə" itemValue="4" noSelectionOption="true" />
+                    <f:selectItem itemLabel="5-cü səviyyə" itemValue="5" noSelectionOption="true" />
+                </p:selectOneMenu>
+                <br/><br/>
+                <p:selectOneMenu id="ara" value="#{Arayis.nov}" var="nov" autoWidth="80" style="font-size: 14px;width: 85%; float: left;box-shadow: 5px 5px 5px #888888;">
+                    <f:selectItem itemLabel="İqtisadi rayonlar üzrə" itemValue="1" noSelectionOption="true"/>
+                    <f:selectItem itemLabel="Mülkiyyət növləri üzrə" itemValue="2" noSelectionOption="true"/>
+                </p:selectOneMenu>
+                <br/><br/>
+                <p:selectOneMenu  value="#{Yekun_Bean.mn}"  autoWidth="80" style="font-size: 14px;width: 85%; float: left;box-shadow: 5px 5px 5px #888888;">
+                    <f:selectItem itemLabel="Müəssisələr üzrə" itemValue="0" noSelectionOption="true"/>
+                    <f:selectItem itemLabel="Bütün müəssisələr" itemValue="4" noSelectionOption="true"/>
+                    <f:selectItem itemLabel="İri müəssisələr" itemValue="2" noSelectionOption="true"/>
+                    <f:selectItem itemLabel="Kiçik müəssisələr" itemValue="1" noSelectionOption="true"/>
+                </p:selectOneMenu>
+                <br/><br/>
+                <p:selectOneMenu  value="#{Yekun_Bean.ik}"  autoWidth="80" style="font-size: 14px;width: 85%; float: left;box-shadow: 5px 5px 5px #888888;">
+                    <f:selectItem itemLabel="Sahibkarlar üzrə" itemValue="0" noSelectionOption="true"/>
+                    <f:selectItem itemLabel="Bütün sahibkarlar" itemValue="4" noSelectionOption="true"/>
+                    <f:selectItem itemLabel="İri sahibkarlar" itemValue="2" noSelectionOption="true"/>
+                    <f:selectItem itemLabel="Orta sahibkarlar" itemValue="3" noSelectionOption="true"/>
+                    <f:selectItem itemLabel="Kiçik sahibkarlar" itemValue="1" noSelectionOption="true"/>
+                </p:selectOneMenu>
+                <br/><br/><br/><br/>
+                <p:selectOneMenu id="c" value="#{Yekun_Bean.selectiqtisadireg}" autoWidth="80" var="iqt" style="width:85%;font-size: 14px;float: left;box-shadow: 5px 5px 5px #888888;">
+                    <f:selectItems value="#{Yekun_Bean.iqtisadireg}" var="i" itemLabel="#{i.araziadi}" itemValue="#{i.zona}"/>
+                </p:selectOneMenu>   
+                <br/><br/>
+                <p:selectOneMenu value="#{Yekun_Bean.selectfnkod}" autoWidth="80" var="fnkod" style="width: 85%;font-size: 14px;float: left;box-shadow: 5px 5px 5px #888888;" >
+                    <f:selectItem itemLabel="Fəaliyyət növü üzrə..." itemValue="0" noSelectionOption="false"/>
+                    <f:selectItems  value="#{Yekun_Bean.fnkod}" var="f" itemLabel="#{f.seksiya} - #{f.sahe}" itemValue="#{f.seksiya}"/>
+                </p:selectOneMenu>    
+                <br/><br/>             
+                <p:selectOneMenu id="d" value="#{Yekun_Bean.selectmulkiyyet}" autoWidth="80" var="mulk" style="width:85%;font-size: 14px;float: left;box-shadow: 5px 5px 5px #888888;">
+                    <f:selectItem itemLabel="Bütün mülkiyyət növləri üzrə" itemValue="0" noSelectionOption="false"/>
+                    <f:selectItems value="#{Yekun_Bean.mulkiyyet}" var="m" itemLabel="#{m.mulk}" itemValue="#{m.id}"/>
+                </p:selectOneMenu>  
+                <br/><br/>
+                <p:dialog widgetVar="statusDialog" modal="true" draggable="false"  closable="false" resizable="false" showHeader="false" style="border-radius: 200px 200px 200px 200px">
+                    <p:graphicImage url="/resource/images/ajax-loader_4.gif" width="40" height="40"/>
+                </p:dialog>
+
+                <p:commandLink action="#{Arayis.web()}"  onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" update="@all" style="float: right">
+                    <p:graphicImage url="/resource/images/HTML_64x64.png" styleClass="image"/>
+                </p:commandLink> 
+                <p:commandLink action="#{Yekun_Bean.hes_excel()}" ajax="false" style="float: right">
+                    <p:graphicImage url="/resource/images/Excel_64x64.png" styleClass="image"/>
+                </p:commandLink>
+                <p:commandLink action="#{Yekun_Bean.chap_pdf()}" actionListener="#{Yekun_Bean.elave()}" ajax="false" target="_blank" style="float: right">                   
+                    <p:graphicImage url="/resource/images/PDF_64x64.png" styleClass="image"/>
+                </p:commandLink>
+
+
+                Səhifə № &nbsp; <p:inputNumber value="#{Yekun_Bean.seh}"  maxlength="4" size="3" inputStyle="text-align: right" onfocus="clear0(this)" decimalSeparator=" " thousandSeparator=" " decimalPlaces="0"/>
+                <br/><br/><br/>
+                <h:panelGroup id="group" rendered="#{Main_Bean.status == 2}">
+                    <fieldset style="border-radius:10px; border-color: #00cc33; padding:10px;box-shadow: 5px 5px 5px 5px #888888; ">
+                        <legend align="center">
+                            <h:outputText  value=" Hesabata keçid " style="font-style: normal; font-size: 14px; color:#00cc33;"/>
+                        </legend>
+                        <h:outputText value="Kod:" style="font-style: normal; font-size: 1em;"/>&nbsp;
+                        <p:inputNumber id="kod" value="#{Bean.selectcode}" maxValue="9999999"  required="#{not empty param.Save}" 
+                                       requiredMessage="Kod boş ola bilməz!..." validatorMessage="Kod 7 rəqəmli olmalıdır!..." 
+                                       style="text-align: right;" autocomplete="off"  size="11" inputStyle="text-align: right"
+                                       onfocus="clear0(this)"  onblur="clear0(this);" decimalSeparator=" " thousandSeparator=" " decimalPlaces="0">
+                            <f:validateLength minimum="7"/></p:inputNumber>
+                        <p:spacer width="15"/>
+                        <p:commandButton  value="Daxil ol" action="#{Bean.GoHes()}" update="group"  icon="fa fa-external-link">
+                            <f:param name="Save" value="true"/></p:commandButton>
+                        <br/> 
+                        <h:outputText  style="font-style: normal; font-size: 1em; color: red"/>          
+                    </fieldset> 
+                    <p:messages showIcon="false" style="width: 270px;font-size: 13px">
+                        <p:effect type="clip" event="load" delay="2500"/>
+                    </p:messages>                                
+                </h:panelGroup>
+            </p:panel>
+        </h:form>
+
+        <ui:insert  name="content"></ui:insert>
+     
+    </h:body>
+</html>

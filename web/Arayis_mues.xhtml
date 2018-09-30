@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="Yekun.xhtml">
+
+            <ui:define name="content">
+                <h:form>
+                    <p:panel style="height: 620px;background-color: #e6e6e6;width: 76%;float: right;box-shadow: 10px 10px 10px 10px;border-radius: 10px 10px 10px 10px">
+                        <div class="ui-datatable ui-widget ui-datatable-scrollable" style="height: 616px;background-color: #e6e6e6;width: 50%;margin: auto">
+                            <div  class="ui-datatable-header ui-widget-header ui-corner-top">
+                                <font size="3">Müəssisələr haqqında arayış</font>
+                            </div>
+                            <div class="ui-widget-header ui-datatable-scrollable-header">
+                                <div class="ui-datatable-scrollable-header-box" style="margin-right: 12px;">
+                                    <table cellspacing="0" align="center"   border="1" class="ui-datatable ui-widget ui-datatable-scrollable" style="font-size: 13px;font-weight: normal;">                            
+                                        <thead class="ui-widget-header ui-datatable-scrollable-header ui-datatable-scrollable-header-box" style="font-weight: bold;">                          
+                                            <tr align="center" class="ui-state-default">
+                                                <td width="50%" style="font-weight: bold;">Rayonlar</td> 
+                                                <td style="font-weight: bold;">Dövlət müəssisələri</td>
+                                                <td style="font-weight: bold;">Qeyri-dövlət müəssisələri</td>
+                                                <td style="font-weight: bold;">Cəmi</td>
+                                            </tr> 
+                                        </thead>
+                                    </table>  
+                                </div>
+                            </div>
+                            <div class="ui-datatable-scrollable-body" style="height: 545px;">
+                                <table> 
+                                    <thead class="ui-datatable-scrollable-theadclone">    
+                                        <tr>
+                                            <th width="50%" class="ui-state-default"></th> 
+                                            <th class="ui-state-default"></th>
+                                            <th class="ui-state-default"></th>
+                                            <th class="ui-state-default"></th>
+                                        </tr> 
+                                    </thead>
+                                    <tbody class="ui-datatable-data ui-widget-content">
+                                        <ui:repeat value="#{Arayis.muessise()}" var="mues">
+                                            <tr align="center">
+                                                <p:dialog widgetVar="statusDialog" modal="true" draggable="false"  closable="false" resizable="false" showHeader="false" style="border-radius: 200px 200px 200px 200px">
+                                                    <p:graphicImage url="/resource/images/ajax-loader_4.gif" width="40" height="40"/>
+                                                </p:dialog>
+                                                <td align="left"><h:outputText value="#{mues.adi}" rendered="#{mues.zona != '000'}"/>
+                                                    <h:outputText value="#{mues.adi}" rendered="#{mues.zona == '000'}" style="font-weight: bold;"/></td>
+                                                    <td><p:commandLink value="#{mues.sut1}" update="@all" action="Teqdimeden" onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" disabled="#{mues.sut1 == 0}" style="text-decoration: none;color: blue">
+                                                        <f:param name="action" value="9"/>
+                                                        <f:param name="id" value="#{v.sut4}"/>
+                                                    </p:commandLink></td>
+                                                <td><p:commandLink value="#{mues.sut2}" update="@all" action="Teqdimeden" onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" disabled="#{mues.sut2 == 0}" style="text-decoration: none;color: blue">
+                                                        <f:param name="action" value="10"/>
+                                                        <f:param name="id" value="#{mues.sut4}"/>
+                                                    </p:commandLink></td>
+                                                <td><p:commandLink value="#{mues.sut3}" update="@all" action="Teqdimeden" onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" disabled="#{mues.sut3 == 0}" style="text-decoration: none;color: blue">
+                                                        <f:param name="action" value="11"/>
+                                                        <f:param name="id" value="#{mues.sut4}"/>
+                                                    </p:commandLink></td>
+                                            </tr>
+                                        </ui:repeat>
+                                    </tbody>      
+                                </table>
+                            </div>
+                        </div>
+                    </p:panel>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

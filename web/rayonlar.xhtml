@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <h:outputStylesheet name="./css/MyStyle.css"/>
+        <title>Facelet Title</title>
+        <script type="text/javascript"
+                src="resource/script/input.js?ln=js" charset="utf-8"/>
+    </h:head>
+    <h:body>
+        <h:form>
+            <p:panel style="background-color: lightgray;height: 640px">
+                <p:panel id="panel" style="width: 59%;margin: auto;left: 19.5%;right: 19.5%;">
+                    <h:outputText value="#{Yekun_Bean.Ray()}" style="font-size: 22px"/>
+                    <p:tabMenu activeIndex="2">
+                        <p:menuitem value="Yekun" action="#{Bean.go()}"/>
+                        <p:menuitem value="Sistemdən çıxış" url="http://localhost:8080/loginControl/?param=pr03101444/"/>
+                    </p:tabMenu>
+                </p:panel> 
+                <p:dataTable rowIndexVar="row" scrollable="true" scrollHeight="550" value="#{Yekun_Bean.rayon()}" var="ray" style="width: 60%;margin: auto">
+                <p:column headerText="№" style="width: 6%">
+                    <h:outputText value="#{row + 1}"/>
+                </p:column>
+                <p:column headerText="Kodu" style="width: 10%;">
+                    <h:commandLink action="Hesabat" value="#{ray.kod}" style="color: blue;text-decoration: none">
+                        <f:setPropertyActionListener value="#{ray.kod}" target="#{Bean.code}"/>
+                    </h:commandLink>
+                </p:column>
+                <p:column headerText="Müəssisənin adı">
+                    <h:outputText value="#{ray.ad}"/>
+                </p:column>         
+            </p:dataTable>
+            <br/><br/>
+            <!--<p:sticky target="panel" />-->
+            </p:panel>
+
+    </h:form>
+</h:body>
+</html>
+

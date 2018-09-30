@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    <f:loadBundle basename="stat.pr03101444.Pojo.messages" var="msgs"/>
+    <h:head>
+        <title>#{msgs.title}</title>
+    </h:head>
+    <h:body>
+        <div style="background: #D5D5D5; padding: 6px 12px 12px 12px; border: solid thin #B0B0B0; float: left; font-style: normal; font-size: 16px">
+            <h:panelGrid columns="2" cellspacing="6px" style="margin-bottom: 6px">
+                <!--<h:graphicImage library="resource/images" name="cixis.png" width="32px"/>-->
+                <h:panelGroup>
+                    <h:graphicImage url="resource/images/Warning_icon.gif" width="32px"/>
+                    <h:outputText value="#{msgs.title}" style="font-size: 1.15em"/>
+                    <!--<h:outputText value="(#{msgs.version})" style="margin-left: 6px; font-size: 0.7em; color: #00007F"/>-->
+                </h:panelGroup>
+            </h:panelGrid>
+            <h:panelGrid columns="1" width="420px">
+                <h:outputText value="#{Main_Bean.rcomment}" escape="false" style="color: #0000FF"/>
+            </h:panelGrid>
+            <br/>
+            <h:outputText value="#{Main_Bean.errmes}" escape="false" style="font-size: 1.1em; color: #FF0000"/>
+        </div>
+    </h:body>
+</html>
