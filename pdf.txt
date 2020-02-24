@@ -1,0 +1,29 @@
+Target: development of multi-threaded REST service
+Valid programming languages:
+? Java
+? Kotlin
+? JavaScript
+? C#
+Execution result: source code projects must be available on the GitHub or BitBucket
+repository, up to you
+Description:
+There is a public SOAP web service available at: http://www.dneonline.com/calculator.asmx
+WSDL URL: http://www.dneonline.com/calculator.asmx?WSDL
+You need to write a web service to create a REST JSON wrapper for SOAP service. All
+SOAP service methods should be duplicated in the new REST service and in fact wrap the
+source service methods in JSON.
+Additional conditions are recording all requests and responses to logs and writing to a local
+SQL database.
+Logging to the database and log file should be performed with the obligatory observance of
+the sequence of the entire call. That is, in the case of simultaneous execution of 2 calls, one
+call is sequentially recorded in the log, then the other.
+The log entries should be as follows:
+[dd.MM HH:mm:ss] - Call 1. Request to JSON
+[dd.MM HH:mm:ss] - Call 1. Request to SOAP
+[dd.MM HH:mm:ss] - Call 1. Response from SOAP
+[dd.MM HH:mm:ss] - Call 2. Request to JSON
+[dd.MM HH:mm:ss] - Call 2. Request to SOAP
+[dd.MM HH:mm:ss] - Call 2. Response from SOAP
+By request and response are meant specific data received.
+Database structure:
+Additional (optional): creating Unit tests for the project
